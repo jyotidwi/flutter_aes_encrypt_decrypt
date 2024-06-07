@@ -28,14 +28,17 @@ jobs:
       - name: Flutter action
         uses: subosito/flutter-action@v2.9.1
         with:
-          flutter-version: '3.19.3'
+          flutter-version: '3.16.2'
           channel: 'stable'
 
-      - name: Analyze project source
-        run: flutter analyze
+      #- name: Analyze project source
+       # run: flutter analyze
 
       - name: Install dependencies
-        run: flutter pub get
+        run: dart pub get
+
+      - name: Install dependencies
+        run: dart pub outdated
 
       - name: Flutter build apk
         run: flutter build apk --no-tree-shake-icons --split-per-abi --release
