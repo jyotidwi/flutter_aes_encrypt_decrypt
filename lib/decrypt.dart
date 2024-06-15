@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 class MyEncryptionDecryption {
   final String _aesKey = "buyaohuida-buyaohuida-buyaohuida-bu";
 
-  Future<String> decrypt({required String data}) async {
+  Future<String> decryptt({required String data}) async {
     final key = encrypt.Key.fromUtf8(_aesKey);
     final iv = encrypt.IV.fromBase64(data.substring(0, 24));
     final encrypter = encrypt.Encrypter(
@@ -16,7 +16,7 @@ class MyEncryptionDecryption {
     return decrypted;
   }
 
-  Future<String> encrypt({required String data}) async {
+  Future<String> encryptt({required String data}) async {
     final key = encrypt.Key.fromUtf8(_aesKey);
     final iv = encrypt.IV.fromSecureRandom(16);
     final encrypter = encrypt.Encrypter(
