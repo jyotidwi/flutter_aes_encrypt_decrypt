@@ -17,6 +17,8 @@ class _HomePageState extends State<HomePage> {
   final TextEditingController _textEditingController = TextEditingController();
   String _encryptData = "";
   String _decryptData = "";
+  String _aesKey = "";
+  String _aesIV = "";
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +37,15 @@ class _HomePageState extends State<HomePage> {
                  _encryptData= await MyEncryptionDecryption()
                       .encryptt(data: _textEditingController.text);
                   setState(() {
-
+                    _encryptData = result;
+                  _aesKey = MyEncryptionDecryption().aesKey;
+                  _aesIV = MyEncryptionDecryption().ivUsedForEncryption.base64;                 
                   });
                 },
                 child: const Text("Encrypt")),
             Text("Encrypted Text: $_encryptData"),
+            if (_aesKey.isNotEmpty) Text("AES Key: $_aesKey"),
+            if (_aesIV.isNotEmpty) Text("AES IV: $_aesIV"),
             TextButton(
                 onPressed: _encryptData == "" ? null : () async {
                   _decryptData= await  MyEncryptionDecryption()
