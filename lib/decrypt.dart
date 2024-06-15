@@ -2,7 +2,7 @@ import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:flutter/foundation.dart';
 
 class MyEncryptionDecryption {
-  final String _aesKey = "buyaohuida-buyaohuida-buyaohuida-bu";
+  final String _aesKey = "buyaohuida-buyaohuida-buyaohuida";
 
   Future<String> decryptt({required String data}) async {
     final key = encrypt.Key.fromUtf8(_aesKey);
