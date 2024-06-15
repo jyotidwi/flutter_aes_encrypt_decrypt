@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'decrypt.dart';
 
 void main() {
@@ -33,29 +32,31 @@ class _HomePageState extends State<HomePage> {
           children: [
             TextField(controller: _textEditingController),
             TextButton(
-                onPressed: () async {
-                 _encryptData= await MyEncryptionDecryption()
-                      .encryptt(data: _textEditingController.text);
-                  setState(() {
-                    _encryptData = result;
+              onPressed: () async {
+                String result = await MyEncryptionDecryption()
+                    .encryptt(data: _textEditingController.text);
+                setState(() {
+                  _encryptData = result;
                   _aesKey = MyEncryptionDecryption().aesKey;
-                  _aesIV = MyEncryptionDecryption().ivUsedForEncryption.base64;                 
-                  });
-                },
-                child: const Text("Encrypt")),
+                  _aesIV = MyEncryptionDecryption().ivUsedForEncryption.base64;
+                });
+              },
+              child: const Text("Encrypt"),
+            ),
             Text("Encrypted Text: $_encryptData"),
             if (_aesKey.isNotEmpty) Text("AES Key: $_aesKey"),
             if (_aesIV.isNotEmpty) Text("AES IV: $_aesIV"),
             TextButton(
-                onPressed: _encryptData == "" ? null : () async {
-                  _decryptData= await  MyEncryptionDecryption()
-                      .decryptt(data:_encryptData);
-                  setState(() {
-
-                  });
-                },
-                child: const Text("Decrypt")),
-            Text("Decrypt Text: $_decryptData"),
+              onPressed: _encryptData.isEmpty ? null : () async {
+                String decryptedData = await MyEncryptionDecryption()
+                    .decryptt(data: _encryptData);
+                setState(() {
+                  _decryptData = decryptedData;
+                });
+              },
+              child: const Text("Decrypt"),
+            ),
+            Text("Decrypted Text: $_decryptData"),
           ],
         ),
       ),
